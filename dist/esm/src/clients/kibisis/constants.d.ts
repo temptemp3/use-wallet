@@ -29,7 +29,7 @@ export declare const VOI_TESTNET_GENESIS_HASH = "IXnoWtviVVJW5LGivNFc0Dq14V3kqaX
  * timeouts
  */
 export declare const DEFAULT_REQUEST_TIMEOUT = 180000;
-export declare const LOWER_REQUEST_TIMEOUT = 3000;
+export declare const LOWER_REQUEST_TIMEOUT = 750;
 export declare const UPPER_REQUEST_TIMEOUT = 300000;
 /**
  * icon

@@ -3216,7 +3216,7 @@ const NETWORK_NOT_SUPPORTED_ERROR = 4004;
  * timeouts
  */
 const DEFAULT_REQUEST_TIMEOUT = 180000; // 3 minutes in milliseconds
-const LOWER_REQUEST_TIMEOUT = 3000; // 3 seconds in milliseconds
+const LOWER_REQUEST_TIMEOUT = 750; // 0.75 seconds in milliseconds
 /**
  * icon
  */
@@ -3359,12 +3359,15 @@ class KibisisClient extends BaseClient {
                     providerId: ARC_0027_PROVIDER_ID
                 });
             }, timeout || DEFAULT_REQUEST_TIMEOUT);
-            // broadcast the request
-            channel.postMessage({
-                id: requestId,
-                params,
-                reference
-            });
+            // send the request on the next tick to allow the channel to be created
+            window.setTimeout(() => {
+                // broadcast the request
+                channel.postMessage({
+                    id: requestId,
+                    params,
+                    reference
+                });
+            }, 0);
         });
     }
     /**

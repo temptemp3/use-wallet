@@ -197,12 +197,15 @@ class KibisisClient extends BaseClient {
         } as ResponseError<{ method: ProviderMethods }>)
       }, timeout || DEFAULT_REQUEST_TIMEOUT)
 
-      // broadcast the request
-      channel.postMessage({
-        id: requestId,
-        params,
-        reference
-      } as RequestMessage<Params>)
+      // send the request on the next tick to allow the channel to be created
+      window.setTimeout(() => {
+        // broadcast the request
+        channel.postMessage({
+          id: requestId,
+          params,
+          reference
+        } as RequestMessage<Params>)
+      }, 0)
     })
   }
 
