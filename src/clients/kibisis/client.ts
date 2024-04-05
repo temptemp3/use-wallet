@@ -74,6 +74,7 @@ class KibisisClient extends BaseClient {
     network = DEFAULT_NETWORK
   }: InitParams<PROVIDER_ID.KIBISIS>): Promise<BaseClient | null> {
     try {
+      await new Promise((resolve) => setTimeout(resolve, 1000))
       debugLog(`${PROVIDER_ID.KIBISIS.toUpperCase()}#${KibisisClient.init.name}: initializing...`)
 
       const algosdk = algosdkStatic || (await Algod.init(algodOptions)).algosdk

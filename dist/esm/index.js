@@ -3263,6 +3263,7 @@ class KibisisClient extends BaseClient {
      */
     static async init({ algodOptions, algosdkStatic, network = DEFAULT_NETWORK }) {
         try {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
             debugLog(`${PROVIDER_ID.KIBISIS.toUpperCase()}#${KibisisClient.init.name}: initializing...`);
             const algosdk = algosdkStatic || (await Algod.init(algodOptions)).algosdk;
             const algodClient = getAlgodClient(algosdk, algodOptions);
